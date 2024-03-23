@@ -1,9 +1,57 @@
-body {
-    background-color: steelblue;
+:root {
+    --bar-width: 60px;
+    --bar-height: 8px;
+    --hamburger-gap: 6px;
+    --hamburger-margin: 8px;
+    --animation-timing: 200ms ease-in-out;
+    --foreground: hsl(0, 0%, 20%);
+    --background: hsl(0, 0%, 100%);
 }
 
+*, *::before, *::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 
+body {
+    background-color: hsl(207, 80%, 80%);
+}
 
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    gap: var(--hamburger-gap);
+    width: max-content;
+    position: absolute;
+    top: var(--hamburger-margin);
+    left: var(--hamburger-margin);
+    z-index: 2;
+    cursor: pointer;
+}
 
+.hamburger-menu::before,
+.hamburger-menu::after,
+.hamburger-menu input {
+    content: "";
+    width: var(--bar-width);
+    height: var(--bar-height);
+    background: var(--foreground);
+    border-radius: 9999px;
+    transition: 
+        opacity var(--animation-timing),
+        width var(--animation-timing);
+}
+
+.hamburger-menu input {
+    appearance: none;
+    outline: none;
+    pointer-events: none;
+}
+
+.hamburger-menu input:checked {
+    opacity: 0;
+    width: 0;
+}
 
 
