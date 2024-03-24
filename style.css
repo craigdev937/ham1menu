@@ -8,8 +8,9 @@
         var(--hamburger-gap) * 2
     );
     --animation-timing: 200ms ease-in-out;
-    --foreground: hsl(0, 0%, 20%);
+    --foreground: hsl(270, 79%, 15%);
     --background: hsl(0, 0%, 100%);
+    --steelblue: hsl(207, 80%, 80%);
 }
 
 *, *::before, *::after {
@@ -19,7 +20,7 @@
 }
 
 body {
-    background-color: hsl(207, 80%, 80%);
+    background-color: var(--steelblue)
 }
 
 .hamburger-menu {
@@ -33,6 +34,18 @@ body {
     left: var(--hamburger-margin);
     z-index: 2;
     cursor: pointer;
+}
+
+.hamburger-menu:has(input:checked) {
+    --foreground: hsl(0, 0%, 100%);
+    --background: hsl(270, 79%, 15%);
+}
+
+.hamburger-menu:has(input:focus-visible)::before,
+.hamburger-menu:has(input:focus-visible)::after,
+.hamburger-menu input:focus-visible {
+    border: 1px solid var(--background);
+    box-shadow: 0 0 0 1px var(--foreground);
 }
 
 .hamburger-menu::before,
@@ -73,6 +86,24 @@ body {
 .hamburger-menu input:checked {
     opacity: 0;
     width: 0;
+}
+
+.sidebar {
+    transition: translate var(--animation-timing);
+    translate: -100%;
+    padding: 0.5rem 1rem;
+    padding-top: calc(
+        var(--hamburger-height) + 
+        var(--hamburger-margin) + 1rem
+    );
+    background-color: var(--foreground);
+    color: var(--background);
+    max-width: 10rem;
+    min-height: 100vh;
+}
+
+.hamburger-menu:has(input:checked) + .sidebar {
+    translate: 0;
 }
 
 
