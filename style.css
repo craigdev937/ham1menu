@@ -20,7 +20,7 @@
 }
 
 body {
-    background-color: var(--steelblue)
+    background-color: var(--steelblue);
 }
 
 .hamburger-menu {
